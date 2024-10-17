@@ -14,6 +14,7 @@ Route::get('/fakultas/{fakutlas}', [FakultasController::class, 'show']);
 Route::get('/prodi', [ProdiController::class, 'index']);
 Route::post('/fakultas', [FakultasController::class, 'store']);
 Route::post('/prodi', [ProdiController::class, 'store']);
+Route::get('/prodi/{prodi}', [ProdiController::class, 'show']);
 Route::patch('/fakultas/{fakultas}', [FakultasController::class, 'update']);
 Route::patch('/prodi/{prodi}', [ProdiController::class, 'update']);
 Route::delete('/fakultas/{fakultas}', [FakultasController::class, 'destroy']);

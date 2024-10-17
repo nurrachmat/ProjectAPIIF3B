@@ -38,7 +38,7 @@ class ProdiController extends Controller
         ]);
 
         $result = Prodi::create($validate); // simpan ke tabel prodis
-        if($result){
+        if ($result) {
             $data['success'] = true;
             $data['message'] = "Data prodi berhasil disimpan";
             $data['result'] = $result;
@@ -49,9 +49,19 @@ class ProdiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Prodi $prodi)
+    public function show($prodi)
     {
-        //
+        $prodi = Prodi::with('fakultas')->find($prodi);
+        if ($prodi) {
+            $data['success'] = true;
+            $data['message'] = "Data prodi berhasil ditemukan";
+            $data['result'] = $prodi;
+            return response()->json($data, Response::HTTP_OK);
+        } else {
+            $data['success'] = false;
+            $data['message'] = "Data prodi tidak ditemukan";
+            return response()->json($data, Response::HTTP_NOT_FOUND);
+        }
     }
 
     /**
@@ -73,7 +83,7 @@ class ProdiController extends Controller
         ]);
 
         $result = Prodi::where('id', $id)->update($validate);
-        if($result){
+        if ($result) {
             $data['success'] = true;
             $data['message'] = "Data prodi berhasil diupdate";
             $data['result'] = $result;
@@ -87,7 +97,7 @@ class ProdiController extends Controller
     public function destroy($id)
     {
         $prodi = Prodi::find($id);
-        if($prodi){
+        if ($prodi) {
             $prodi->delete(); // hapus data prodi berdasarkan $id
             $data['success'] = true;
             $data['message'] = "Data prodi berhasil dihapus";
