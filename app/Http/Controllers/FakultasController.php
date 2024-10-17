@@ -49,8 +49,9 @@ class FakultasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Fakultas $fakultas)
+    public function show($fakultas)
     {
+        $fakultas = Fakultas::find($fakultas);
         $data['success'] = true;
         $data['message'] = "Detail data fakultas";
         $data['result'] = $fakultas;
