@@ -38,7 +38,7 @@ class FakultasController extends Controller
         ]);
 
         $result = Fakultas::create($validate); // simpan ke tabel fakultas
-        if($result){
+        if ($result) {
             $data['success'] = true;
             $data['message'] = "Data fakultas berhasil disimpan";
             $data['result'] = $result;
@@ -51,7 +51,10 @@ class FakultasController extends Controller
      */
     public function show(Fakultas $fakultas)
     {
-        //
+        $data['success'] = true;
+        $data['message'] = "Detail data fakultas";
+        $data['result'] = $fakultas;
+        return response()->json($data, Response::HTTP_OK);
     }
 
     /**
@@ -72,7 +75,7 @@ class FakultasController extends Controller
         ]);
 
         $result = Fakultas::where('id', $id)->update($validate);
-        if($result){
+        if ($result) {
             $data['success'] = true;
             $data['message'] = "Data fakultas berhasil diupdate";
             $data['result'] = $result;
@@ -86,7 +89,7 @@ class FakultasController extends Controller
     public function destroy($id)
     {
         $fakultas = Fakultas::find($id);
-        if($fakultas){
+        if ($fakultas) {
             $fakultas->delete(); // hapus data fakultas berdasarkan $id
             $data['success'] = true;
             $data['message'] = "Data fakultas berhasil dihapus";
