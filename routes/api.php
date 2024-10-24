@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::patch('/fakultas/{fakultas}', [FakultasController::class, 'update']);
 Route::patch('/prodi/{prodi}', [ProdiController::class, 'update']);
 Route::delete('/fakultas/{fakultas}', [FakultasController::class, 'destroy']);
 Route::delete('/prodi/{prodi}', [ProdiController::class, 'destroy']);
+
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/login', [RegisterController::class, 'login']);
