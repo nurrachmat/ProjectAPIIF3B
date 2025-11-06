@@ -33,9 +33,6 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
-        //$validate = $request->validate([
-        //    'nama' => 'required|unique:fakultas,nama'
-        //]);
         
         // Cek apakah nama sudah ada sebelum menyimpan
         $existingFakultas = Fakultas::where('nama', $request->nama)->first();
@@ -45,6 +42,11 @@ class FakultasController extends Controller
                 'message' => 'Nama fakultas sudah ada di tabel fakultas.'
             ], Response::HTTP_BAD_REQUEST);
         }
+
+        
+        $validate = $request->validate([
+            'nama' => 'required|unique:fakultas,nama'
+        ]);
         
         // Jika tidak ada, simpan data
         $result = Fakultas::create($validate);
